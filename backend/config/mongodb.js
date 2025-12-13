@@ -1,0 +1,11 @@
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+    mongoose.connection.on("connected", () => {
+        console.log("Datbase is connected");
+    });
+
+    await mongoose.connect(`${process.env.MONGO_URI}/mern-auth`);
+};
+
+module.exports = connectDB;
