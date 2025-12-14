@@ -5,12 +5,16 @@ import { Login } from './Auth/Login'
 import { SignUp } from './Auth/SignUp'
 import VerifyEmail from './Auth/VerifyEmail'
 import ResetPassword from './Auth/ResetPassword'
+import { AppContextProvider } from './context/AppContext'
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AnimatedRoutes() {
   const location = useLocation()
   
   return (
     <AnimatePresence mode="wait">
+      <ToastContainer/>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login key="login" />} />
@@ -26,7 +30,9 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
+    <AppContextProvider>
       <AnimatedRoutes />
+      </AppContextProvider>
     </BrowserRouter>
   )
 }
